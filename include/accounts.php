@@ -1,5 +1,5 @@
 <?php
-require_once(LIB_PATH.DS.'database.php');
+require_once('database.php');
 class User {
 	protected static  $tblname = "tblusers";
 
@@ -12,10 +12,10 @@ class User {
 		$mydb->setQuery("SELECT * FROM ".self::$tblname);
 		return $cur;
 	}
- 
+
 	function find_user($id="",$user_name=""){
 		global $mydb;
-		$mydb->setQuery("SELECT * FROM ".self::$tblname." 
+		$mydb->setQuery("SELECT * FROM ".self::$tblname."
 			WHERE USERID = {$id} OR USERNAME = '{$user_name}'");
 		$cur = $mydb->executeQuery();
 		$row_count = $mydb->num_rows($cur);
@@ -53,7 +53,7 @@ class User {
 	}
 	function single_user($id=""){
 			global $mydb;
-			$mydb->setQuery("SELECT * FROM ".self::$tblname." 
+			$mydb->setQuery("SELECT * FROM ".self::$tblname."
 				Where USERID= '{$id}' LIMIT 1");
 			$cur = $mydb->loadSingleResult();
 			return $cur;
@@ -66,11 +66,11 @@ class User {
 		  if($object->has_attribute($attribute)) {
 		    $object->$attribute = $value;
 		  }
-		} 
+		}
 		return $object;
 	}
-	
-	
+
+
 	/*--Cleaning the raw data before submitting to Database--*/
 	private function has_attribute($attribute) {
 	  // We don't care about the value, we just want to know if the key exists
@@ -78,7 +78,7 @@ class User {
 	  return array_key_exists($attribute, $this->attributes());
 	}
 
-	protected function attributes() { 
+	protected function attributes() {
 		// return an array of attribute names and their values
 	  global $mydb;
 	  $attributes = array();
@@ -89,7 +89,7 @@ class User {
 	  }
 	  return $attributes;
 	}
-	
+
 	protected function sanitized_attributes() {
 	  global $mydb;
 	  $clean_attributes = array();
@@ -100,14 +100,14 @@ class User {
 	  }
 	  return $clean_attributes;
 	}
-	
-	
+
+
 	/*--Create,Update and Delete methods--*/
 	public function save() {
 	  // A new record won't have an id yet.
 	  return isset($this->id) ? $this->update() : $this->create();
 	}
-	
+
 	public function create() {
 		global $mydb;
 		// Don't forget your SQL syntax and good habits:
@@ -121,7 +121,7 @@ class User {
 		$sql .= join("', '", array_values($attributes));
 		$sql .= "')";
 	echo $mydb->setQuery($sql);
-	
+
 	 if($mydb->executeQuery()) {
 	    $this->id = $mydb->insert_id();
 	    return true;
@@ -141,8 +141,8 @@ class User {
 		$sql .= join(", ", $attribute_pairs);
 		$sql .= " WHERE USERID=". $id;
 	  $mydb->setQuery($sql);
-	 	if(!$mydb->executeQuery()) return false; 	
-		
+	 	if(!$mydb->executeQuery()) return false;
+
 	}
 
 	public function delete($id=0) {
@@ -151,10 +151,10 @@ class User {
 		  $sql .= " WHERE USERID=". $id;
 		  $sql .= " LIMIT 1 ";
 		  $mydb->setQuery($sql);
-		  
-			if(!$mydb->executeQuery()) return false; 	
-	
-	}	
+
+			if(!$mydb->executeQuery()) return false;
+
+	}
 
 
 }

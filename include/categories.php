@@ -1,5 +1,5 @@
 <?php
-require_once(LIB_PATH.DS.'database.php');
+require_once('database.php');
 class Category {
 	protected static  $tblname = "tblcategory";
 
@@ -15,16 +15,16 @@ class Category {
 	}
 	function find_category($id="",$name=""){
 		global $mydb;
-		$mydb->setQuery("SELECT * FROM ".self::$tblname." 
+		$mydb->setQuery("SELECT * FROM ".self::$tblname."
 			WHERE CATEGORYID = {$id} OR CATEGORY = '{$name}'");
 		$cur = $mydb->executeQuery();
 		$row_count = $mydb->num_rows($cur);
 		return $row_count;
 	}
-	 
+
 	function single_category($id=""){
 			global $mydb;
-			$mydb->setQuery("SELECT * FROM ".self::$tblname." 
+			$mydb->setQuery("SELECT * FROM ".self::$tblname."
 				Where CATEGORYID= '{$id}' LIMIT 1");
 			$cur = $mydb->loadSingleResult();
 			return $cur;
@@ -37,11 +37,11 @@ class Category {
 		  if($object->has_attribute($attribute)) {
 		    $object->$attribute = $value;
 		  }
-		} 
+		}
 		return $object;
 	}
-	
-	
+
+
 	/*--Cleaning the raw data before submitting to Database--*/
 	private function has_attribute($attribute) {
 	  // We don't care about the value, we just want to know if the key exists
@@ -49,7 +49,7 @@ class Category {
 	  return array_key_exists($attribute, $this->attributes());
 	}
 
-	protected function attributes() { 
+	protected function attributes() {
 		// return an array of attribute names and their values
 	  global $mydb;
 	  $attributes = array();
@@ -60,7 +60,7 @@ class Category {
 	  }
 	  return $attributes;
 	}
-	
+
 	protected function sanitized_attributes() {
 	  global $mydb;
 	  $clean_attributes = array();
@@ -71,14 +71,14 @@ class Category {
 	  }
 	  return $clean_attributes;
 	}
-	
-	
+
+
 	/*--Create,Update and Delete methods--*/
 	public function save() {
 	  // A new record won't have an id yet.
 	  return isset($this->id) ? $this->update() : $this->create();
 	}
-	
+
 	public function create() {
 		global $mydb;
 		// Don't forget your SQL syntax and good habits:
@@ -92,7 +92,7 @@ class Category {
 		$sql .= join("', '", array_values($attributes));
 		$sql .= "')";
 	echo $mydb->setQuery($sql);
-	
+
 	 if($mydb->executeQuery()) {
 	    $this->id = $mydb->insert_id();
 	    return true;
@@ -112,8 +112,8 @@ class Category {
 		$sql .= join(", ", $attribute_pairs);
 		$sql .= " WHERE CATEGORYID=". $id;
 	  $mydb->setQuery($sql);
-	 	if(!$mydb->executeQuery()) return false; 	
-		
+	 	if(!$mydb->executeQuery()) return false;
+
 	}
 
 	public function delete($id=0) {
@@ -122,10 +122,10 @@ class Category {
 		  $sql .= " WHERE CATEGORYID=". $id;
 		  $sql .= " LIMIT 1 ";
 		  $mydb->setQuery($sql);
-		  
-			if(!$mydb->executeQuery()) return false; 	
-	
-	}	
+
+			if(!$mydb->executeQuery()) return false;
+
+	}
 
 
 }

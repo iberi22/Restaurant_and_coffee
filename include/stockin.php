@@ -1,5 +1,5 @@
 <?php
-require_once(LIB_PATH.DS.'database.php');
+require_once('database.php');
 class StockIn {
 	protected static  $tblname = "tblstockin";
 
@@ -13,15 +13,15 @@ class StockIn {
 		$mydb->setQuery("SELECT * FROM ".self::$tblname);
 		return $cur;
 	}
- 
+
 	function single_product($id=""){
 			global $mydb;
-			$mydb->setQuery("SELECT * FROM ".self::$tblname." 
+			$mydb->setQuery("SELECT * FROM ".self::$tblname."
 				Where PROID= '{$id}' LIMIT 1");
 			$cur = $mydb->loadSingleResult();
 			return $cur;
 	}
- 
+
 	/*---Instantiation of Object dynamically---*/
 	static function instantiate($record) {
 		$object = new self;
@@ -30,11 +30,11 @@ class StockIn {
 		  if($object->has_attribute($attribute)) {
 		    $object->$attribute = $value;
 		  }
-		} 
+		}
 		return $object;
 	}
-	
-	
+
+
 	/*--Cleaning the raw data before submitting to Database--*/
 	private function has_attribute($attribute) {
 	  // We don't care about the value, we just want to know if the key exists
@@ -42,7 +42,7 @@ class StockIn {
 	  return array_key_exists($attribute, $this->attributes());
 	}
 
-	protected function attributes() { 
+	protected function attributes() {
 		// return an array of attribute names and their values
 	  global $mydb;
 	  $attributes = array();
@@ -53,7 +53,7 @@ class StockIn {
 	  }
 	  return $attributes;
 	}
-	
+
 	protected function sanitized_attributes() {
 	  global $mydb;
 	  $clean_attributes = array();
@@ -64,14 +64,14 @@ class StockIn {
 	  }
 	  return $clean_attributes;
 	}
-	
-	
+
+
 	/*--Create,Update and Delete methods--*/
 	public function save() {
 	  // A new record won't have an id yet.
 	  return isset($this->id) ? $this->update() : $this->create();
 	}
-	
+
 	public function create() {
 		global $mydb;
 		// Don't forget your SQL syntax and good habits:
@@ -85,7 +85,7 @@ class StockIn {
 		$sql .= join("', '", array_values($attributes));
 		$sql .= "')";
 	echo $mydb->setQuery($sql);
-	
+
 	 if($mydb->executeQuery()) {
 	    $this->id = $mydb->insert_id();
 	    return true;
@@ -105,8 +105,8 @@ class StockIn {
 		$sql .= join(", ", $attribute_pairs);
 		$sql .= " WHERE STOCKINID=". $id;
 	  $mydb->setQuery($sql);
-	 	if(!$mydb->executeQuery()) return false; 	
-		
+	 	if(!$mydb->executeQuery()) return false;
+
 	}
 
 	public function delete($id=0) {
@@ -115,10 +115,10 @@ class StockIn {
 		  $sql .= " WHERE STOCKINID=". $id;
 		  $sql .= " LIMIT 1 ";
 		  $mydb->setQuery($sql);
-		  
-			if(!$mydb->executeQuery()) return false; 	
-	
-	}	
+
+			if(!$mydb->executeQuery()) return false;
+
+	}
 
 
 }

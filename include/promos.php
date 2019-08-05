@@ -1,5 +1,5 @@
 <?php
-require_once(LIB_PATH.DS.'database.php');
+require_once('database.php');
 class Promo {
 	protected static  $tblname = "tblpromopro";
 
@@ -15,7 +15,7 @@ class Promo {
 	}
 	// function find_promo($id="",$name=""){
 	// 	global $mydb;
-	// 	$mydb->setQuery("SELECT * FROM ".self::$tblname." 
+	// 	$mydb->setQuery("SELECT * FROM ".self::$tblname."
 	// 		WHERE PROID = {$id} OR PRONAME = '{$name}'");
 	// 	$cur = $mydb->executeQuery();
 	// 	$row_count = $mydb->num_rows($cur);
@@ -24,16 +24,16 @@ class Promo {
 
 	// function find_all_promo($name=""){
 	// 	global $mydb;
-	// 	$mydb->setQuery("SELECT * FROM ".self::$tblname." 
+	// 	$mydb->setQuery("SELECT * FROM ".self::$tblname."
 	// 		WHERE PRONAME = '{$name}'");
 	// 	$cur = $mydb->executeQuery();
 	// 	$row_count = $mydb->num_rows($cur);
 	// 	return $row_count;
 	// }
-	 
+
 	function single_promo($id=""){
 			global $mydb;
-			$mydb->setQuery("SELECT * FROM ".self::$tblname." 
+			$mydb->setQuery("SELECT * FROM ".self::$tblname."
 				Where PROMOID= '{$id}' LIMIT 1");
 			$cur = $mydb->loadSingleResult();
 			return $cur;
@@ -41,14 +41,14 @@ class Promo {
 
 	// function qtydeduct($id='',$value=0){
 	// 	global $mydb;
-	// 	$mydb->setQuery("UPDATE  ".self::$tblname." 
+	// 	$mydb->setQuery("UPDATE  ".self::$tblname."
 	// 		SET PROQTY=PROQTY - ".$value." WHERE PROID = '{$id}'");
 	// 	$cur = $mydb->executeQuery();
 	// }
 
 	// function qtyplus($id='',$value=0){
 	// 	global $mydb;
-	// 	$mydb->setQuery("UPDATE  ".self::$tblname." 
+	// 	$mydb->setQuery("UPDATE  ".self::$tblname."
 	// 		SET PROQTY=PROQTY + ".$value." WHERE PROID = '{$id}'");
 	// 	$cur = $mydb->executeQuery();
 
@@ -61,11 +61,11 @@ class Promo {
 		  if($object->has_attribute($attribute)) {
 		    $object->$attribute = $value;
 		  }
-		} 
+		}
 		return $object;
 	}
-	
-	
+
+
 	/*--Cleaning the raw data before submitting to Database--*/
 	private function has_attribute($attribute) {
 	  // We don't care about the value, we just want to know if the key exists
@@ -73,7 +73,7 @@ class Promo {
 	  return array_key_exists($attribute, $this->attributes());
 	}
 
-	protected function attributes() { 
+	protected function attributes() {
 		// return an array of attribute names and their values
 	  global $mydb;
 	  $attributes = array();
@@ -84,7 +84,7 @@ class Promo {
 	  }
 	  return $attributes;
 	}
-	
+
 	protected function sanitized_attributes() {
 	  global $mydb;
 	  $clean_attributes = array();
@@ -95,14 +95,14 @@ class Promo {
 	  }
 	  return $clean_attributes;
 	}
-	
-	
+
+
 	/*--Create,Update and Delete methods--*/
 	public function save() {
 	  // A new record won't have an id yet.
 	  return isset($this->id) ? $this->update() : $this->create();
 	}
-	
+
 	public function create() {
 		global $mydb;
 		// Don't forget your SQL syntax and good habits:
@@ -116,7 +116,7 @@ class Promo {
 		$sql .= join("', '", array_values($attributes));
 		$sql .= "')";
 	echo $mydb->setQuery($sql);
-	
+
 	 if($mydb->executeQuery()) {
 	    $this->id = $mydb->insert_id();
 	    return true;
@@ -136,8 +136,8 @@ class Promo {
 		$sql .= join(", ", $attribute_pairs);
 		$sql .= " WHERE PROID=". $id;
 	  $mydb->setQuery($sql);
-	 	if(!$mydb->executeQuery()) return false; 	
-		
+	 	if(!$mydb->executeQuery()) return false;
+
 	}
 
 	public function delete($id=0) {
@@ -146,10 +146,10 @@ class Promo {
 		  $sql .= " WHERE PROID=". $id;
 		  $sql .= " LIMIT 1 ";
 		  $mydb->setQuery($sql);
-		  
-			if(!$mydb->executeQuery()) return false; 	
-	
-	}	
+
+			if(!$mydb->executeQuery()) return false;
+
+	}
 
 
 }

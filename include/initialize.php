@@ -10,21 +10,22 @@ defined('SITE_ROOT') ? null : define ('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'].DS.
 
 defined('LIB_PATH') ? null : define ('LIB_PATH',SITE_ROOT.DS.'include');
 
+echo LIB_PATH.DS;
 //load the database configuration first.
-require_once(LIB_PATH.DS."config.php");
-require_once(LIB_PATH.DS."function.php");
-require_once(LIB_PATH.DS."session.php");
-require_once(LIB_PATH.DS."accounts.php");
-require_once(LIB_PATH.DS."autonumbers.php");
-require_once(LIB_PATH.DS."meal.php");
-// require_once(LIB_PATH.DS."stockin.php");
-require_once(LIB_PATH.DS."categories.php");
-// require_once(LIB_PATH.DS."sidebarFunction.php"); 
-// require_once(LIB_PATH.DS."promos.php");
-// require_once(LIB_PATH.DS."customers.php");
-require_once(LIB_PATH.DS."orders.php");
-require_once(LIB_PATH.DS."summary.php");
-require_once(LIB_PATH.DS."tables.php");
+require_once("config.php");
+require_once("function.php");
+require_once("session.php");
+require_once("accounts.php");
+require_once("autonumbers.php");
+require_once("meal.php");
+// require_once("stockin.php");
+require_once("categories.php");
+// require_once("sidebarFunction.php");
+// require_once("promos.php");
+// require_once("customers.php");
+require_once("orders.php");
+require_once("summary.php");
+require_once("tables.php");
 // require_once(LIB_PATH.DS."settings.php");
 
 

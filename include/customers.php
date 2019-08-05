@@ -1,5 +1,5 @@
 <?php
-require_once(LIB_PATH.DS.'database.php');
+require_once('database.php');
 class Customer {
 	protected static  $tblname = "tblcustomer";
 
@@ -15,17 +15,17 @@ class Customer {
 	}
 	function find_customer($id="",$name=""){
 		global $mydb;
-		$mydb->setQuery("SELECT * FROM ".self::$tblname." 
+		$mydb->setQuery("SELECT * FROM ".self::$tblname."
 			WHERE CUSTOMERID = {$id} OR FNAME = '{$name}'");
 		$cur = $mydb->executeQuery();
 		$row_count = $mydb->num_rows($cur);
 		return $row_count;
 	}
 
- 
+
 	function find_all_customer($name=""){
 		global $mydb;
-		$mydb->setQuery("SELECT * FROM ".self::$tblname." 
+		$mydb->setQuery("SELECT * FROM ".self::$tblname."
 			WHERE FNAME = '{$name}'");
 		$cur = $mydb->executeQuery();
 		$row_count = $mydb->num_rows($cur);
@@ -43,18 +43,18 @@ class Customer {
 		 $user_found = $mydb->loadSingleResult();
 		 	$_SESSION['CUSID']   		= $user_found->CUSTOMERID;
 		 	$_SESSION['CUSNAME']      	= $user_found->FNAME . ' ' .$user_found->LNAME;
-		 	$_SESSION['CUSUNAME'] 		= $user_found->CUSUNAME; 
-		 	$_SESSION['CUSUPASS'] 		= $user_found->CUSPASS; 
+		 	$_SESSION['CUSUNAME'] 		= $user_found->CUSUNAME;
+		 	$_SESSION['CUSUPASS'] 		= $user_found->CUSPASS;
 		   return true;
 		 }else{
 		 	return false;
 		 }
 	}
-	
-	 
+
+
 	function single_customer($id=""){
 			global $mydb;
-			$mydb->setQuery("SELECT * FROM ".self::$tblname." 
+			$mydb->setQuery("SELECT * FROM ".self::$tblname."
 				Where CUSTOMERID= {$id} LIMIT 1");
 			$cur = $mydb->loadSingleResult();
 			return $cur;
@@ -67,11 +67,11 @@ class Customer {
 		  if($object->has_attribute($attribute)) {
 		    $object->$attribute = $value;
 		  }
-		} 
+		}
 		return $object;
 	}
-	
-	
+
+
 	/*--Cleaning the raw data before submitting to Database--*/
 	private function has_attribute($attribute) {
 	  // We don't care about the value, we just want to know if the key exists
@@ -79,7 +79,7 @@ class Customer {
 	  return array_key_exists($attribute, $this->attributes());
 	}
 
-	protected function attributes() { 
+	protected function attributes() {
 		// return an array of attribute names and their values
 	  global $mydb;
 	  $attributes = array();
@@ -90,7 +90,7 @@ class Customer {
 	  }
 	  return $attributes;
 	}
-	
+
 	protected function sanitized_attributes() {
 	  global $mydb;
 	  $clean_attributes = array();
@@ -101,14 +101,14 @@ class Customer {
 	  }
 	  return $clean_attributes;
 	}
-	
-	
+
+
 	/*--Create,Update and Delete methods--*/
 	public function save() {
 	  // A new record won't have an id yet.
 	  return isset($this->id) ? $this->update() : $this->create();
 	}
-	
+
 	public function create() {
 		global $mydb;
 		// Don't forget your SQL syntax and good habits:
@@ -122,7 +122,7 @@ class Customer {
 		$sql .= join("', '", array_values($attributes));
 		$sql .= "')";
 	echo $mydb->setQuery($sql);
-	
+
 	 if($mydb->executeQuery()) {
 	    $this->id = $mydb->insert_id();
 	    return true;
@@ -142,8 +142,8 @@ class Customer {
 		$sql .= join(", ", $attribute_pairs);
 		$sql .= " WHERE CUSTOMERID=". $id;
 	  $mydb->setQuery($sql);
-	 	if(!$mydb->executeQuery()) return false; 	
-		
+	 	if(!$mydb->executeQuery()) return false;
+
 	}
 
 	public function delete($id=0) {
@@ -152,10 +152,10 @@ class Customer {
 		  $sql .= " WHERE CUSTOMERID=". $id;
 		  $sql .= " LIMIT 1 ";
 		  $mydb->setQuery($sql);
-		  
-			if(!$mydb->executeQuery()) return false; 	
-	
-	}	
+
+			if(!$mydb->executeQuery()) return false;
+
+	}
 
 
 }
