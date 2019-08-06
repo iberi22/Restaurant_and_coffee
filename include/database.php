@@ -16,14 +16,16 @@ class Database {
 	}
 
 	public function open_connection() {
-		$this->conn = mysqli_connect(server,user,pass);
+		$this->conn = mysqli_connect("localhost","root","serverchkdsk");
 		if(!$this->conn){
 			echo "Problem in database connection! Contact administrator!";
 			exit();
 
 		}else{
 
-			$db_select = mysqli_select_db($this->conn,database_name);
+			$db_select = mysqli_select_db($this->conn,'plazacafedb');
+			// $db_select = mysqli_select_db($this->conn, DB_NAME);
+			echo $db_select;
 			if (!$db_select) {
 				echo "Problem in selecting database! Contact administrator!";
 				exit();

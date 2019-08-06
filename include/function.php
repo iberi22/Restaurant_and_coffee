@@ -1,7 +1,7 @@
 <?php
 	function strip_zeros_from_date($marked_string="") {
 		//first remove the marked zeros
-		$no_zeros = str_replace('*0','',$marked_string);
+		$no_zeros       = str_replace('*0','',$marked_string);
 		$cleaned_string = str_replace('*0','',$no_zeros);
 		return $cleaned_string;
 	}
