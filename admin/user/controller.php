@@ -1,7 +1,7 @@
 <?php
 require_once ("../../include/initialize.php");
 	  if (!isset($_SESSION['ADMIN_USERID'])){
-      redirect(web_root."admin/index.php");
+      redirect("../admin/index.php");
      }
 
 $action = (isset($_GET['action']) && $_GET['action'] != '') ? $_GET['action'] : '';
@@ -10,11 +10,11 @@ switch ($action) {
 	case 'add' :
 	doInsert();
 	break;
-	
+
 	case 'edit' :
 	doEdit();
 	break;
-	
+
 	case 'delete' :
 	doDelete();
 	break;
@@ -23,9 +23,9 @@ switch ($action) {
 	doupdateimage();
 	break;
 
- 
+
 	}
-   
+
 	function doInsert(){
 		if(isset($_POST['save'])){
 
@@ -34,7 +34,7 @@ switch ($action) {
 			$messageStats = false;
 			message("All field is required!","error");
 			redirect('index.php?view=add');
-		}else{	
+		}else{
 			$user = New User();
 			$user->USERID 			= $_POST['user_id'];
 			$user->FULLNAME 		= $_POST['U_NAME'];
@@ -43,12 +43,12 @@ switch ($action) {
 			$user->ROLE				=  $_POST['U_ROLE'];
 			$user->create();
 
-						$autonum = New Autonumber(); 
+						$autonum = New Autonumber();
 						$autonum->auto_update('userid');
 
 			message("The account [". $_POST['U_NAME'] ."] created successfully!", "success");
 			redirect("index.php");
-			
+
 		}
 		}
 
@@ -57,7 +57,7 @@ switch ($action) {
 	function doEdit(){
 	if(isset($_POST['save'])){
 
-			$user = New User(); 
+			$user = New User();
 			$user->FULLNAME 		= $_POST['U_NAME'];
 			$user->USERNAME			= $_POST['U_USERNAME'];
 			$user->PASS				=sha1($_POST['U_PASS']);
@@ -71,7 +71,7 @@ switch ($action) {
 
 
 	function doDelete(){
-		
+
 		// if (isset($_POST['selector'])==''){
 		// message("Select the records first before you delete!","info");
 		// redirect('index.php');
@@ -85,22 +85,22 @@ switch ($action) {
 		// 	$user = New User();
 		// 	$user->delete($id[$i]);
 
-		
+
 				$id = 	$_GET['id'];
 
 				$user = New User();
 	 		 	$user->delete($id);
-			 
+
 			message("User has been deleted!","info");
 			redirect('index.php');
 		// }
 		// }
 
-		
+
 	}
 
 	function doupdateimage(){
- 
+
 			$errofile = $_FILES['photo']['error'];
 			$type = $_FILES['photo']['type'];
 			$temp = $_FILES['photo']['tmp_name'];
@@ -112,10 +112,10 @@ switch ($action) {
 				message("No Image Selected!", "error");
 				redirect("index.php?view=view&id=". $_GET['id']);
 		}else{
-	 
+
 				@$file=$_FILES['photo']['tmp_name'];
 				@$image= addslashes(file_get_contents($_FILES['photo']['tmp_name']));
-				@$image_name= addslashes($_FILES['photo']['name']); 
+				@$image_name= addslashes($_FILES['photo']['name']);
 				@$image_size= getimagesize($_FILES['photo']['tmp_name']);
 
 			if ($image_size==FALSE ) {
@@ -124,18 +124,18 @@ switch ($action) {
 			}else{
 					//uploading the file
 					move_uploaded_file($temp,"photos/" . $myfile);
-		 	
-					 
+
+
 
 						$user = New User();
 						$user->USERIMAGE 			= $location;
 						$user->update($_SESSION['USERID']);
 						redirect("index.php");
-						 
-							
+
+
 					}
 			}
-			 
+
 		}
- 
+
 ?>

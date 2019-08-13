@@ -1,6 +1,6 @@
-<?php  
+<?php
       if (!isset($_SESSION['ADMIN_USERID'])){
-      redirect(web_root."admin/index.php");
+      redirect("../admin/index.php");
      }
 
   @$USERID = $_GET['id'];
@@ -10,25 +10,25 @@
   $user = New User();
   $singleuser = $user->single_user($USERID);
 
-?> 
+?>
 
  <form class="form-horizontal span6" action="controller.php?action=edit" method="POST">
 
           <fieldset>
             <h1 class="page-header"> Update User Account</h1>
-                   
+
                     <!-- <div class="form-group">
                     <div class="col-md-8">
                       <label class="col-md-4 control-label" for=
                       "user_id">User Id:</label> -->
 
                       <!-- <div class="col-md-8"> -->
-                        
+
                          <input id="USERID" name="USERID" type="Hidden" value="<?php echo $singleuser->USERID; ?>">
                    <!--    </div>
                     </div>
-                  </div>      -->      
-                  
+                  </div>      -->
+
                   <div class="form-group">
                     <div class="col-md-8">
                       <label style="font-size: 20px;" class="col-md-4 control-label" for=
@@ -75,15 +75,15 @@
                       <div class="col-md-8">
                        <select class="form-control input-lg" name="U_ROLE" id="U_ROLE">
                           <option value="Administrator"  <?php echo ($singleuser->ROLE=='Administrator') ? 'selected="true"': '' ; ?>>Administrator</option>
-                          <option value="Cashier" <?php echo ($singleuser->ROLE=='Cashier') ? 'selected="true"': '' ; ?>>Cashier</option> 
+                          <option value="Cashier" <?php echo ($singleuser->ROLE=='Cashier') ? 'selected="true"': '' ; ?>>Cashier</option>
                           <!-- <option value="Customer">Customer</option> -->
                           <option value="Waiter" <?php echo ($singleuser->ROLE=='Waiter') ? 'selected="true"': '' ; ?>>Waiter</option>
-                        </select> 
+                        </select>
                       </div>
                     </div>
                   </div>
 
-            
+
              <div class="form-group">
                     <div class="col-md-8">
                       <label class="col-md-4 control-label" for=
@@ -96,8 +96,8 @@
                     </div>
                   </div>
 
-              
-          </fieldset> 
+
+          </fieldset>
 
         <div class="form-group">
                 <div class="rows">
@@ -106,19 +106,19 @@
                     "otherperson"></label>
 
                     <div class="col-md-6">
-                   
+
                     </div>
                   </div>
 
                   <div class="col-md-6" align="right">
-                   
+
 
                    </div>
-                  
+
               </div>
               </div>
-          
+
         </form>
-      
+
 
         </div><!--End of container-->

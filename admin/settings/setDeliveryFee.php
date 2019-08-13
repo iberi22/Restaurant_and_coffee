@@ -1,7 +1,7 @@
-<?php  
+<?php
 
     if (!isset($_SESSION['USERID'])){
-      redirect(web_root."index.php");
+      redirect("../../index.php");
      }
 
  if (isset($_GET['id'])){
@@ -10,7 +10,7 @@
   $set = $setting->single_setting($ID);
 
  ?>
- 
+
 
 <form class="form-horizontal span6" action="controller.php?action=edit" method="POST" enctype="multipart/form-data"    >
  <div class="row">
@@ -18,10 +18,10 @@
             <h1 class="page-header">Set Delivery</h1>
           </div>
           <!-- /.col-lg-12 -->
-       </div> 
+       </div>
 
- 
-            
+
+
                  <div class="form-group">
                     <div class="col-md-8">
                       <label class="col-md-4 control-label" for=
@@ -60,8 +60,8 @@
                     </div>
                   </div>
 
-                
-            
+
+
              <div class="form-group">
                     <div class="col-md-8">
                       <label class="col-md-4 control-label" for=
@@ -73,13 +73,13 @@
                     </div>
                   </div>
 
-               
-    
-          
-        </form>
-      
 
-       
+
+
+        </form>
+
+
+
 
 
  <?php }else{ ?>
@@ -89,10 +89,10 @@
             <h1 class="page-header">Set Delivery</h1>
           </div>
           <!-- /.col-lg-12 -->
-       </div> 
+       </div>
 
- 
-            
+
+
                  <div class="form-group">
                     <div class="col-md-8">
                       <label class="col-md-4 control-label" for=
@@ -129,8 +129,8 @@
                     </div>
                   </div>
 
-                
-            
+
+
              <div class="form-group">
                     <div class="col-md-8">
                       <label class="col-md-4 control-label" for=
@@ -142,13 +142,13 @@
                     </div>
                   </div>
 
-               
-    
-          
-        </form>
-      
 
-       
+
+
+        </form>
+
+
+
 <?php   }
 
 ?>

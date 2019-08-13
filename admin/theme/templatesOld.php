@@ -13,39 +13,39 @@
       echo $viewTitle['Title'];
     ?>
 </title>
- 
+
  <!-- Bootstrap Core CSS -->
-    <link href="<?php echo web_root; ?>admin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../admin/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="<?php echo web_root; ?>admin/css/sb-admin.css" rel="stylesheet">
+    <link href="../admin/css/sb-admin.css" rel="stylesheet">
 
 
-    <link href="<?php echo web_root; ?>admin/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="../admin/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
 
-    <link href="<?php echo web_root; ?>admin/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"> 
+    <link href="../admin/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
 
-      <link href="<?php echo web_root; ?>css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css"> 
+      <link href="../css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom Fonts -->
-    <link href="<?php echo web_root; ?>admin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> 
+    <link href="../admin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- light box -->
-    <link href="<?php echo web_root; ?>admin/css/ekko-lightbox.css" rel="stylesheet">
+    <link href="../admin/css/ekko-lightbox.css" rel="stylesheet">
 
-    <!-- <link href="<?php echo web_root; ?>css/screen.css" rel="stylesheet"> -->
-    <link href="<?php echo web_root; ?>css/jquery.treetable.css" rel="stylesheet">
-        <link href="<?php echo web_root; ?>css/jquery.treetable.theme.default.css" rel="stylesheet">
+    <!-- <link href="../css/screen.css" rel="stylesheet"> -->
+    <link href="../css/jquery.treetable.css" rel="stylesheet">
+        <link href="../css/jquery.treetable.theme.default.css" rel="stylesheet">
 
 
-    <link rel="icon" href="<?php echo web_root; ?>favicon-1.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-1.ico" type="image/x-icon">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]--> 
+    <![endif]-->
 
 
 </head>
@@ -53,18 +53,18 @@
   <?php
    //admin_confirm_logged_in();
   if (!isset($_SESSION['ADMIN_USERID'])){
-      redirect(web_root."admin/login.php");
-     } 
-     
+      redirect("../admin/login.php");
+     }
+
   $todaysales = 0;
-  $query = "SELECT SUM(TOTALPAYMENT) AS 'SALES' FROM `tblpayments`  
+  $query = "SELECT SUM(TOTALPAYMENT) AS 'SALES' FROM `tblpayments`
              WHERE  DATE(TRANSDATE) =CURDATE()";
         $mydb->setQuery($query);
         $cur = $mydb->loadSingleResult();
         $todaysales = $cur->SALES;
- 
 
-   $query = "SELECT * FROM `tblorders`  
+
+   $query = "SELECT * FROM `tblorders`
              WHERE  STATUS='Pending' GROUP BY ORDERNO ";
         $mydb->setQuery($query);
         $cur = $mydb->executeQuery();
@@ -81,7 +81,7 @@
     font-size: 16px;
   }
 </style>
-      
+
 <body>
 <div id="wrapper">
         <!-- Navigation -->
@@ -94,7 +94,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <?php 
+                <?php
                 if ($_SESSION['ADMIN_ROLE']=='Administrator') {
                   # code...
              ?>
@@ -109,50 +109,50 @@
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
- 
+
                 <!-- account -->
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" style="font-size: 20px;" data-toggle="dropdown"><i class="fa fa-user-o"></i> <?php echo $_SESSION['ADMIN_FULLNAME']; ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li style="font-size: 15px;">
-                            <a href="<?php echo web_root; ?>admin/logout.php"><i class="fa fa-fw fa-sign-out"></i>Log Out</a>
+                            <a href="../admin/logout.php"><i class="fa fa-fw fa-sign-out"></i>Log Out</a>
                         </li>
                     </ul>
                 </li>
                 <!-- end account -->
-            </ul> 
+            </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 
             <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav"> 
+                <ul class="nav navbar-nav side-nav">
 
-<?php if ($_SESSION['ADMIN_ROLE']=='Cashier' || $_SESSION['ADMIN_ROLE']=='Administrator') { ?> 
+<?php if ($_SESSION['ADMIN_ROLE']=='Cashier' || $_SESSION['ADMIN_ROLE']=='Administrator') { ?>
                     <li class="<?php echo ($_GET['view']== 'POS' || $_GET['view']== 'addmeal') ? "active" : false;?>">
-                        <a href="<?php echo web_root; ?>admin/orders/index.php?view=POS"><i class="fa fa-fw fa-th-list"></i> Orders <div id="notif" class="label label-danger"><?php echo $maxrow; ?></div></a>
-                    </li> 
-<?php } ?>
-<?php if ($_SESSION['ADMIN_ROLE']=='Administrator'  || $_SESSION['ADMIN_ROLE']=='Cashier') { ?> 
-                    <li class="<?php echo (currentpage() == 'table') ? "active" : false;?>">
-                        <a href="<?php echo web_root; ?>admin/table/"><i class="fa fa-fw fa-table"></i> Tables</a>
+                        <a href="../admin/orders/index.php?view=POS"><i class="fa fa-fw fa-th-list"></i> Orders <div id="notif" class="label label-danger"><?php echo $maxrow; ?></div></a>
                     </li>
 <?php } ?>
-<?php if ($_SESSION['ADMIN_ROLE']=='Administrator'  || $_SESSION['ADMIN_ROLE']=='Cashier') { ?> 
+<?php if ($_SESSION['ADMIN_ROLE']=='Administrator'  || $_SESSION['ADMIN_ROLE']=='Cashier') { ?>
+                    <li class="<?php echo (currentpage() == 'table') ? "active" : false;?>">
+                        <a href="../admin/table/"><i class="fa fa-fw fa-table"></i> Tables</a>
+                    </li>
+<?php } ?>
+<?php if ($_SESSION['ADMIN_ROLE']=='Administrator'  || $_SESSION['ADMIN_ROLE']=='Cashier') { ?>
                     <li class="<?php echo (currentpage() == 'meals') ? "active" : false;?>">
-                        <a href="<?php echo web_root; ?>admin/meals/"><i class="fa fa-cutlery"></i> Meals</a>
+                        <a href="../admin/meals/"><i class="fa fa-cutlery"></i> Meals</a>
                     </li>
                     <li class="<?php echo (currentpage() == 'category') ? "active" : false;?>">
-                        <a href="<?php echo web_root; ?>admin/category/"><i class="fa fa-align-left"></i> Categories</a>
+                        <a href="../admin/category/"><i class="fa fa-align-left"></i> Categories</a>
                     </li>
-<?php } ?>                  
-<?php if ($_SESSION['ADMIN_ROLE']=='Administrator' || $_SESSION['ADMIN_ROLE']=='Admin') {?> 
+<?php } ?>
+<?php if ($_SESSION['ADMIN_ROLE']=='Administrator' || $_SESSION['ADMIN_ROLE']=='Admin') {?>
                     <li class="<?php echo (currentpage() == 'user') ? "active" : false;?>">
-                        <a href="<?php echo web_root; ?>admin/user/"><i class="fa fa-users"></i> Manage Users</a>
+                        <a href="../admin/user/"><i class="fa fa-users"></i> Manage Users</a>
                     </li>
 <?php } ?>
 <?php if ($_SESSION['ADMIN_ROLE']=='Administrator') { ?>
                     <li class="<?php echo (currentpage() == 'report') ? "active" : false;?>">
-                        <a href="<?php echo web_root; ?>admin/report/"><i class="fa fa-bar-chart"></i> Sales Report</a>
-                    </li>   
+                        <a href="../admin/report/"><i class="fa fa-bar-chart"></i> Sales Report</a>
+                    </li>
 <?php } ?>
                 </ul>
             </div>
@@ -164,11 +164,11 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-               <div class="row" > 
+               <div class="row" >
 
-                   <?php   check_message();  ?>   
+                   <?php   check_message();  ?>
 
-                  <?php require_once $content; ?> 
+                  <?php require_once $content; ?>
               </div>
                 <!-- /.row -->
 
@@ -182,27 +182,27 @@
     <!-- /#wrapper -->
 
 
-<!-- jQuery --> 
-<script src="<?php echo web_root; ?>admin/jquery/jquery.min.js"></script> 
+<!-- jQuery -->
+<script src="../admin/jquery/jquery.min.js"></script>
 <!-- Bootstrap Core JavaScript -->
-<script src="<?php echo web_root; ?>admin/js/bootstrap.min.js"></script>
+<script src="../admin/js/bootstrap.min.js"></script>
 
-<script src="<?php echo web_root; ?>admin/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo web_root; ?>admin/js/dataTables.bootstrap.min.js"></script>
+<script src="../admin/js/jquery.dataTables.min.js"></script>
+<script src="../admin/js/dataTables.bootstrap.min.js"></script>
 
-<script type="text/javascript" src="<?php echo web_root; ?>admin/js/bootstrap-datepicker.js" charset="UTF-8"></script>
-<script type="text/javascript" src="<?php echo web_root; ?>admin/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-<script type="text/javascript" src="<?php echo web_root; ?>admin/js/bootstrap-datetimepicker.uk.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../admin/js/bootstrap-datepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../admin/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../admin/js/locales/bootstrap-datetimepicker.uk.js" charset="UTF-8"></script>
 
-<script type="text/javascript" src="<?php echo web_root; ?>js/bootstrap-timepicker.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../js/bootstrap-timepicker.min.js" charset="UTF-8"></script>
 
-<script type="text/javascript" src="<?php echo web_root; ?>admin/js/janobe.js" charset="UTF-8"></script> 
+<script type="text/javascript" src="../admin/js/janobe.js" charset="UTF-8"></script>
 
-<script src="<?php echo web_root; ?>admin/js/ekko-lightbox.js"></script>
-<script src="<?php echo web_root; ?>admin/js/lightboxfunction.js"></script> 
+<script src="../admin/js/ekko-lightbox.js"></script>
+<script src="../admin/js/lightboxfunction.js"></script>
 
-<script src="<?php echo web_root; ?>js/jquery.treetable.js" type="text/javascript"></script>
- 
+<script src="../js/jquery.treetable.js" type="text/javascript"></script>
+
 
 <script type="text/javascript">
    $('.timepicker1').timepicker();
@@ -218,13 +218,13 @@ $("#expandAllTasks").on("click", function(){
   // e.preventDefault();
   $('.mytbl').treetable('expandAll');
 });
-    
 
-$("#expandable").on("click", function(){ 
-  // e.preventDefault(); 
+
+$("#expandable").on("click", function(){
+  // e.preventDefault();
  $(".mytbl").treetable('collapseAll');
 });
-    
+
      $(document).on("click",".addcartadmin",function(){
        var id = $(this).data("id");
        // alert(id)
@@ -238,9 +238,9 @@ $("#expandable").on("click", function(){
            $("#cart").html(data);
            $("#addnotif").hide();
            $("#addnotif").show()
-           $("#addnotif").html("Meal added to Cart"); 
+           $("#addnotif").html("Meal added to Cart");
            setInterval(function(){
-           $("#addnotif").hide();  
+           $("#addnotif").hide();
         },3000)
 
         }
@@ -260,9 +260,9 @@ $("#expandable").on("click", function(){
            $("#cart").html(data);
            $("#addnotif").hide();
            $("#addnotif").show()
-           $("#addnotif").html("Meal removed in the cart"); 
+           $("#addnotif").html("Meal removed in the cart");
            setInterval(function(){
-           $("#addnotif").hide();  
+           $("#addnotif").hide();
         },3000)
 
         }
@@ -288,7 +288,7 @@ $("#expandable").on("click", function(){
 
      });
     // end of search meals event handler
-    // 
+    //
 
 // senior citizen
 $(document).on("click", ".seniorcitizen",function(){
@@ -315,7 +315,7 @@ $(document).on("click", ".seniorcitizen",function(){
      }
     catch(err) {
      alert(err.message);
-    } 
+    }
 
 }else{
 
@@ -366,7 +366,7 @@ $(document).on("click", ".seniorcitizen",function(){
 
 
 
-        </script> 
+        </script>
 
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 	 if (!isset($_SESSION['ADMIN_USERID'])){
-      redirect(web_root."admin/index.php");
+      redirect("../admin/index.php");
      }
 
 ?>
@@ -11,10 +11,10 @@
        		</div>
         	<!-- /.col-lg-12 -->
    		 </div>
-	 		    <form action="controller.php?action=delete" Method="POST">  
-			      <div class="table-responsive">			
+	 		    <form action="controller.php?action=delete" Method="POST">
+			      <div class="table-responsive">
 				<table id="dash-table" class="table table-striped table-bordered table-hover table-responsive" style="font-size:12px" cellspacing="0">
-				
+
 				  <thead>
 				  	<tr>
 				  		<th width="12%" style="font-size: 15px; text-align: center;">Account ID</th>
@@ -24,12 +24,12 @@
 				  		<th style="font-size: 15px;">Username</th>
 				  		<th style="font-size: 15px;">Role</th>
 				  		<th style="font-size: 15px; text-align: center;" width="20%" >Action</th>
-				 
-				  	</tr>	
-				  </thead> 
+
+				  	</tr>
+				  </thead>
 				  <tbody>
-				  	<?php 
-				  		// $mydb->setQuery("SELECT * 
+				  	<?php
+				  		// $mydb->setQuery("SELECT *
 								// 			FROM  `tblusers` WHERE TYPE != 'Customer'");
 				  		$mydb->setQuery("SELECT * FROM  `tblusers` ORDER BY ROLE ASC");
 				  		$cur = $mydb->loadResultList();
@@ -53,12 +53,12 @@
 				  					 <a title="Remove" href="controller.php?action=delete&id='.$result->USERID.'" class="btn btn-danger btn-s" '.$active.'><span class="fa fa-trash-o fw-fa"> Remove</span> </a>
 				  					 </td>';
 				  		echo '</tr>';
-				  	} 
+				  	}
 				  	?>
 				  </tbody>
-					
+
 				</table>
- 
+
 				<!-- <div class="btn-group">
 				  <a href="index.php?view=add" class="btn btn-default">New</a>
 				  <button type="submit" class="btn btn-default" name="delete"><span class="glyphicon glyphicon-trash"></span> Delete Selected</button>
@@ -66,6 +66,6 @@
  -->
 			</div>
 				</form>
-	
+
 
 </div> <!---End of container-->

@@ -1,54 +1,54 @@
 <?php
    if (!isset($_SESSION['ADMIN_USERID'])){
-      redirect(web_root."admin/index.php");
+      redirect("../admin/index.php");
      }
 
-		check_message(); 
-		?> 
-		 
+		check_message();
+		?>
+
 		<div class="row">
        	 <div class="col-lg-12">
             <h1 class="page-header">List of Meals  <a href="index.php?view=add" class="btn btn-primary btn-s  ">  <i class="fa fa-plus-circle fw-fa"></i> Add Meal</a>  </h1>
        		</div>
         	<!-- /.col-lg-12 -->
    		 </div>
-			    <form action="controller.php?action=delete" Method="POST">  	
-			    <div class="table-responsive">				
+			    <form action="controller.php?action=delete" Method="POST">
+			    <div class="table-responsive">
 				<table id="dash-table"  class="table table-striped table-bordered table-hover "  style="font-size:12px" cellspacing="0" >
-					
+
 				  <thead style="font-size: 18px;">
-				  	<tr>  
-				  		<th style="text-align: center;">Photo</th>  
+				  	<tr>
+				  		<th style="text-align: center;">Photo</th>
 				  		<th>Meal Description</th>
-				  		<th>Categories</th>  
-				  		<th>Price</th> 
-				  		<th style="text-align: center;">Action</th> 
-				  	</tr>	
-				  </thead> 	
+				  		<th>Categories</th>
+				  		<th>Price</th>
+				  		<th style="text-align: center;">Action</th>
+				  	</tr>
+				  </thead>
 
 			  <tbody>
-				  	<?php 
+				  	<?php
 				  		$query = "SELECT * FROM `tblmeals` m , `tblcategory` c
            					 WHERE  m.`CATEGORYID` = c.`CATEGORYID` ORDER BY CATEGORIES ";
 				  		$mydb->setQuery($query);
 				  		$cur = $mydb->loadResultList();
 
-						foreach ($cur as $result) { 
+						foreach ($cur as $result) {
 				  		echo '<tr>';
 				  		// echo '<td width="3%" align="center"></td>';
 				    	echo '<td width="100px">
-							<a class="MEALID" href="#" data-target="#menuModal"  data-toggle="modal"  data-id="'.$result->MEALID.'"> 
-							<img  title="Change Photo" width="100px" height="40px" src="'.web_root.'admin/meals/'.$result->MEALPHOTO . '">
-							</a></td>'; 	 
+							<a class="MEALID" href="#" data-target="#menuModal"  data-toggle="modal"  data-id="'.$result->MEALID.'">
+							<img  title="Change Photo" width="100px" height="40px" src="../../admin/meals/'.$result->MEALPHOTO . '">
+							</a></td>';
 				  		echo '<td style="font-size:15px;">'.$result->MEALS.'</a></td>';
-				  		
-				  		echo '<td style="font-size:15px; width:100px">'. $result->CATEGORY.'</td>'; 
-				  		echo '<td style="font-size:15px;" width="100px"> &#8369 '.  number_format($result->PRICE,2).'</td>';  
+
+				  		echo '<td style="font-size:15px; width:100px">'. $result->CATEGORY.'</td>';
+				  		echo '<td style="font-size:15px;" width="100px"> &#8369 '.  number_format($result->PRICE,2).'</td>';
 
 				  	 	echo '<td align="center" width="230px"> <a title="View Info" href="index.php?view=view&id='.$result->MEALID.'" class="btn btn-info btn-s  ">  <span class="fa  fa-info fw-fa "> View</a>
 				  	 	     <a title="Edit" href="index.php?view=edit&id='.$result->MEALID.'" class="btn btn-primary btn-s  ">  <span class="fa fa-pencil fw-fa"> Edit</a>
 				  		     <a title="Remove" href="controller.php?action=delete&id='.$result->MEALID.'" class="btn btn-danger btn-s  ">  <span class="fa  fa-trash-o fw-fa "> Remove</a></td>';
-				  	} 
+				  	}
 				  	?>
 				  </tbody>
 				</table>
@@ -59,7 +59,7 @@
 				</div> -->
 				</div>
 				</form>
- 
+
 					 <div class="modal fade" id="menuModal" tabindex="-1">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -70,17 +70,17 @@
                                     <h4 class="modal-title" id="myModalLabel">Image.</h4>
                                 </div>
 
-                                <form action="<?php echo web_root; ?>admin/meals/controller.php?action=photos" enctype="multipart/form-data" method=
+                                <form action="../admin/meals/controller.php?action=photos" enctype="multipart/form-data" method=
                                 "post">
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <div class="rows">
                                                 <div class="col-md-12">
                                                     <div class="rows">
-                                                        <div class="col-md-8"> 
+                                                        <div class="col-md-8">
                                                             <input class="mealid" type="hidden" name="mealid" id="mealid" value="">
-                                                              <input name="MAX_FILE_SIZE" type="hidden" 
-                                                              value="1000000"> 
+                                                              <input name="MAX_FILE_SIZE" type="hidden"
+                                                              value="1000000">
                                                               <input id="photo" name="photo" type="file">
                                                         </div>
 
@@ -99,6 +99,5 @@
                                 </form>
                             </div><!-- /.modal-content
                         </div><!-- /.modal-dialog -->
-                    </div><!-- /.modal -->  
+                    </div><!-- /.modal -->
 
-                

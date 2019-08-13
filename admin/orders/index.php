@@ -2,47 +2,47 @@
 require_once("../../include/initialize.php");
 //checkAdmin();
 	 if (!isset($_SESSION['ADMIN_USERID'])){
-      redirect(web_root."admin/index.php");
+      redirect("../admin/index.php");
      }
 
 $view = (isset($_GET['view']) && $_GET['view'] != '') ? $_GET['view'] : '';
  $title="Orders";
- $header=$view; 
+ $header=$view;
 switch ($view) {
 	case 'POS' :
-		$content    = 'pos.php';		
+		$content    = 'pos.php';
 		break;
 
 	case 'addtocart' :
-		$content    = 'addtocart.php';		
+		$content    = 'addtocart.php';
 		break;
 
 	case 'edit' :
-		$content    = 'edit.php';		
+		$content    = 'edit.php';
 		break;
     case 'view' :
-		$content    = 'view.php';		
+		$content    = 'view.php';
 		break;
 
 	 case 'addorder' :
-		$content    = 'addorder.php';		
+		$content    = 'addorder.php';
 		break;
 
 	case 'addmeal' :
-		$content    = 'addmeal.php';		
+		$content    = 'addmeal.php';
 		break;
 
 	case 'billing' :
-		$content    = 'billing.php';		
+		$content    = 'billing.php';
 		break;
 
 	case 'customerdetails' :
 	 	$header = "Customer Details";
-		$content    = 'customerdetail.php';		
+		$content    = 'customerdetail.php';
 		break;
 
 	case 'orderedproduct' :
-		$content    = 'orderedproduct.php';		
+		$content    = 'orderedproduct.php';
 		break;
 
 	default :
@@ -51,4 +51,4 @@ switch ($view) {
 }
 require_once ("../theme/templates.php");
 ?>
-  
+

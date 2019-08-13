@@ -68,12 +68,12 @@
        #description {
         width: 100%;
         padding: 2px;
-        color:black; 
+        color:black;
        }
 
        .p p {
         font-size: 13px;
-        font-weight: bold; 
+        font-weight: bold;
         height: 30px;
         color:black;
         margin-top: 5px;
@@ -84,12 +84,12 @@
         font-size: 18px;
        }
        #description button {
-        /*color: darkred;*/ 
+        /*color: darkred;*/
         /*font-size: 20px;*/
         margin-top: 3px;
         font-weight: bold;
        }
-      
+
        .item img {
         width: 210px;
         height: 80px;
@@ -97,24 +97,24 @@
        #description > .price {
             font-size: 20px;
             font-weight: bold;
-       } 
+       }
 
        #wrap{
         margin-top: 60px;
-        } 
+        }
          </style>
  <div class="row" id="wrap">
 <div class="col-lg-8">
-<?php 
-    $remarks = isset($_GET['rem']) ? $_GET['rem'] : ''; 
-?> 
-                             <h2 align="center" class="page-header">Lista de Menus</h2> 
+<?php
+    $remarks = isset($_GET['rem']) ? $_GET['rem'] : '';
+?>
+                             <h2 align="center" class="page-header">Lista de Menus</h2>
 
-                                <?php echo check_message(); ?>  
+                                <?php echo check_message(); ?>
                             <ul id="filter-list" class="clearfix">
-                                <li><a style="text-decoration: none;" class="filter <?php echo (!isset($_GET['category']) || $_GET['category']=='ALL') ? 'navactive' : '' ?>"  href="<?php echo web_root ?>index.php?view=menu&category=ALL&rem=<?php echo $remarks ?>">Todo</a></li>
+                                <li><a style="text-decoration: none;" class="filter <?php echo (!isset($_GET['category']) || $_GET['category']=='ALL') ? 'navactive' : '' ?>"  href="index.php?view=menu&category=ALL&rem=<?php echo $remarks ?>">Todo</a></li>
 
-                            <?php 
+                            <?php
 
                                 $categ = isset($_GET['category']) ? $_GET['category'] : '';
                                 $sql = "SELECT * FROM tblcategory";
@@ -124,13 +124,13 @@
                                 foreach ($cur as $result) {
 
                             ?>
-                              <li ><a style="text-decoration: none;"  href="<?php echo web_root; ?>index.php?view=menu&category=<?php echo $result->CATEGORY ?>&rem=<?php echo $remarks ?>" class="filter <?php echo  ($result->CATEGORY==$categ) ?   "navactive" : ""  ?> " ><?php echo $result->CATEGORY; ?></a></li>  
-                                 
+                              <li ><a style="text-decoration: none;"  href="index.php?view=menu&category=<?php echo $result->CATEGORY ?>&rem=<?php echo $remarks ?>" class="filter <?php echo  ($result->CATEGORY==$categ) ?   "navactive" : ""  ?> " ><?php echo $result->CATEGORY; ?></a></li>
+
                             <?php  } ?>
-                                </ul><!-- @end #filter-list -->    
+                                </ul><!-- @end #filter-list -->
                             <ul id="portfolios">
 
-                             <?php  
+                             <?php
 
                                 $category = isset($_GET['category']) ? $_GET['category'] : "ALL";
 
@@ -138,16 +138,16 @@
                                     $sql = "SELECT * FROM tblmeals";
                                 }else{
                                     $sql = "SELECT * FROM tblmeals WHERE CATEGORIES LIKE '%".$category."%'";
-                                } 
+                                }
 
                                 $mydb->SetQuery($sql);
                                 $cur = $mydb->loadResultList();
 
                                 foreach ($cur as $result) {
                         echo '<form class="forms" action="addcart.php?action=add&category='.$category.'" method="POST"  id="contact-us">';
-                            
+
                               echo '<input type="hidden" name="REMARKS" value="'.$remarks.'">';
-                              echo '<li id="'.$result->CATEGORIES.'" class="item '.$result->CATEGORIES.'"><img style="height:150px;border:.5px dashed black;padding:3px; border-radius:5px;" src="'.web_root.'admin/meals/'.$result->MEALPHOTO.'" alt="Food" >
+                              echo '<li id="'.$result->CATEGORIES.'" class="item '.$result->CATEGORIES.'"><img style="height:150px;border:.5px dashed black;padding:3px; border-radius:5px;" src="admin/meals/'.$result->MEALPHOTO.'" alt="Food" >
                                     <div class="p">
                                     <p class="white">'.$result->MEALS.'</p>
                                     </div>
@@ -164,9 +164,9 @@
                                 </li>';
                             echo '</form> ';
                            } ?>
-                  
-                            </ul><!-- @end #portfolios --> 
-  
+
+                            </ul><!-- @end #portfolios -->
+
 </div>
 
 <div class="col-lg-4" style="border-left: solid 1px #ddd;">

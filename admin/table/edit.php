@@ -1,6 +1,6 @@
 <?php
     if (!isset($_SESSION['ADMIN_USERID'])){
-      redirect(web_root."admin/index.php");
+      redirect("../admin/index.php");
      }
 
 
@@ -8,11 +8,11 @@
   $tables = New Tables();
   $stables = $tables->single_table($tableid);
 
-?> 
+?>
  <form class="form-horizontal span6" action="controller.php?action=edit" method="POST">
         <fieldset>
             <h1 class="page-header">Update Table Number</h1>
-                      
+
 
                   <div class="form-group">
                     <div class="col-md-8">
@@ -27,7 +27,7 @@
                   </div>
 
                       <!-- <a href="index.php" class="btn btn_fixnmix"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<strong>Back</strong></a> -->
-          </fieldset> 
+          </fieldset>
 
         <div class="form-group">
                 <div class="rows">
@@ -36,20 +36,19 @@
                     "otherperson"></label>
 
                     <div class="col-md-6">
-                   
+
                     </div>
                   </div>
 
                   <div class="col-md-6" align="right">
-                   
+
 
                    </div>
-                  
+
               </div>
               </div>
-          
+
         </form>
-      
+
 
         </div><!--End of container-->
-  

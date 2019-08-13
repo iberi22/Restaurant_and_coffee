@@ -2,7 +2,7 @@
 <?php
 require_once ("../../include/initialize.php");
  	 if (!isset($_SESSION['ADMIN_USERID'])){
-      redirect(web_root."admin/index.php");
+      redirect("../admin/index.php");
      }
 
 
@@ -12,18 +12,18 @@ switch ($action) {
 	case 'add' :
 	doInsert();
 	break;
-	
+
 	case 'edit' :
 	doEdit();
 	break;
-	
+
 	case 'delete' :
 	doDelete();
 	break;
 
- 
+
 	}
-   
+
 	function doInsert(){
 		if(isset($_POST['save'])){
 
@@ -32,14 +32,14 @@ switch ($action) {
 			$messageStats = false;
 			message("All field is required!","error");
 			redirect('index.php?view=add');
-		}else{	
+		}else{
 			$category = New Category();
 			$category->CATEGORY	= $_POST['CATEGORY'];
 			$category->create();
 
 			message("New [". $_POST['CATEGORY'] ."] created successfully!", "success");
 			redirect("index.php");
-			
+
 		}
 		}
 
@@ -85,6 +85,6 @@ switch ($action) {
 		// 	redirect('index.php');
 		// }
 		// }
-		
+
 	}
 ?>

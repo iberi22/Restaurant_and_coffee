@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once '../include/initialize.php';
 // Four steps to closing a session
 // (i.e. logging out)
@@ -12,13 +12,13 @@ require_once '../include/initialize.php';
 // unset( $_SESSION['USERNAME'] );
 // unset( $_SESSION['PASS'] );
 // unset( $_SESSION['ROLE'] );
- 
 
-unset($_SESSION['ADMIN_USERID']);  
-unset($_SESSION['ADMIN_FULLNAME']); 
-unset($_SESSION['ADMIN_USERNAME']);  
-unset($_SESSION['ADMIN_ROLE']); 
+
+unset($_SESSION['ADMIN_USERID']);
+unset($_SESSION['ADMIN_FULLNAME']);
+unset($_SESSION['ADMIN_USERNAME']);
+unset($_SESSION['ADMIN_ROLE']);
 // 4. Destroy the session
 // session_destroy();
-redirect(web_root."login.php?logout=1");
+redirect("login.php?logout=1");
 ?>

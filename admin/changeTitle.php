@@ -1,17 +1,17 @@
-<?php 
+<?php
 require_once("../include/initialize.php");
 ?>
 <div class="container">
-	 <div class="row"> 
+	 <div class="row">
 	 	<div class="col-lg-6">
 	 		<div class="row">
-	 			<div class="col-md-12"> 
+	 			<div class="col-md-12">
 	 			<?php
 	                $sql = "SELECT * FROM `tbltitle` WHERE TItleID=1";
                  $mydb->setQuery($sql);
-                $viewTitle = $mydb->loadSingleResult(); 
+                $viewTitle = $mydb->loadSingleResult();
             	?>
-	 			<form  class="form-horizontal  span6" action="<?php echo web_root ?>admin/processTitle.php?action=add" enctype="multipart/form-data" method="POST">
+	 			<form  class="form-horizontal  span6" action="admin/processTitle.php?action=add" enctype="multipart/form-data" method="POST">
 	 				<fieldset>
 				          <div class="form-group">
 				            <div class="col-md-10">
@@ -22,7 +22,7 @@ require_once("../include/initialize.php");
 				                 <input style="font-size: 20px; width: 100%;" class="form-control input-lg" id="Title" name="Title" placeholder="Change title" type="text" value="<?php  echo $viewTitle->Title; ?>" required>
 				              </div>
 				            </div>
-				          </div>   
+				          </div>
 				         <div class="form-group">
 				            <div class="col-md-10">
 				              <label class="col-md-4 control-label" for="idno"></label>
@@ -36,5 +36,5 @@ require_once("../include/initialize.php");
 	 			</div>
 	 		</div>
 	 	</div>
-	 	
+
 </div><!--End of container-->

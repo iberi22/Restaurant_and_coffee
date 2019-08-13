@@ -2,9 +2,9 @@
   require_once("../../include/initialize.php");
    //admin_confirm_logged_in();
   if (!isset($_SESSION['ADMIN_USERID'])){
-      redirect(web_root."admin/login.php");
-     } 
-  ?>  
+      redirect("../admin/login.php");
+     }
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,21 +13,21 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Print</title>
- 
+
 
  <!-- Bootstrap Core CSS -->
-    <link href="<?php echo web_root; ?>admin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../admin/css/bootstrap.min.css" rel="stylesheet">
 
 
 
-    <link href="<?php echo web_root; ?>admin/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="../admin/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
 
 
     <!-- Custom Fonts -->
-    <link href="<?php echo web_root; ?>admin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../admin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
-    <!--<link rel="icon" href="<?php echo web_root; ?>favicon-1.ico" type="image/x-icon"> -->
+    <!--<link rel="icon" href="../favicon-1.ico" type="image/x-icon"> -->
 
 </head>
 
@@ -40,10 +40,10 @@
 @$cur = $mydb->loadSingleResult();
 @$remarks = $cur->REMARKS;
 ?>
-      
+
 <body onload="window.print();">
- 
- 
+
+
 <div id="wrapper">
 <center>
     <div class="container">
@@ -51,7 +51,7 @@
         <div style="text-align: center;font-size: 20px;">Customer's Order</div>
         <div><?php echo $remarks; ?> </div>
                  <tfoot>
-                    <?php 
+                    <?php
                         $total = 0;
                         $tableno = 0;
 
@@ -73,18 +73,18 @@
                             <td colspan="2">Table No. <?php echo $tableno; ?> | </td>
                             <td>Order No. <?php echo $orderno; ?></td>
                         </tr>
-                 </tfoot>                
+                 </tfoot>
        <table id="table" class="table" style="font-size: 12px;padding: 0; width: 570px;" >
                     <thead>
-                        <tr> 
+                        <tr>
                             <th>Meal</th>
                             <th width="60" style="text-align: center;">Qty</th>
                             <th width="50" style="text-align: center;">Price</th>
-                            <th width="100" style="text-align: center;">Sub-total</th> 
-                        </tr> 
+                            <th width="100" style="text-align: center;">Sub-total</th>
+                        </tr>
                     </thead>
                     <tbody>
-                        <?php 
+                        <?php
                         $total = 0;
                         $tableno = 0;
 
@@ -96,52 +96,52 @@
                                 $mydb->setQuery($query);
                                 $cur = $mydb->loadResultList();
 
-                                foreach ($cur as $result) { 
-                                echo '<tr>'; 
+                                foreach ($cur as $result) {
+                                echo '<tr>';
                                 echo '<td>'.$result->DESCRIPTION.'</td>';
                                 echo '<td style="text-align: center;">'.$result->QUANTITY.'</td>';
                                 echo '<td style="text-align: center;">'.$result->PRICE.'</td>';
-                                echo '<td style="text-align: center;">'.$result->SUBTOTAL.'</td>'; 
+                                echo '<td style="text-align: center;">'.$result->SUBTOTAL.'</td>';
                                 echo '</tr>';
 
-                                $total += $result->SUBTOTAL; 
+                                $total += $result->SUBTOTAL;
                                 $tableno = $result->TABLENO;
-                             
-                                } 
+
+                                }
                             }
-                            
-                        ?>  
- 
-                <!-- summary -->  
-               
-                        <tr> 
+
+                        ?>
+
+                <!-- summary -->
+
+                        <tr>
                             <th colspan="3" style="text-align:right;">Total</th>
                             <th  width="100" style="text-align: center;"><?php echo number_format($total,2); ?></th>
                         </tr>
                  </tbody>
                 </table>
             <!-- end summary -->
-        
+
     </div>
             </center>
 </div>
     <!-- /#wrapper -->
 
 
-<!-- jQuery --> 
-<script src="<?php echo web_root; ?>admin/js/jquery.js"></script>
+<!-- jQuery -->
+<script src="../admin/js/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="<?php echo web_root; ?>admin/js/bootstrap.min.js"></script>
+<script src="../admin/js/bootstrap.min.js"></script>
 
-<script src="<?php echo web_root; ?>admin/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo web_root; ?>admin/js/dataTables.bootstrap.min.js"></script>
+<script src="../admin/js/jquery.dataTables.min.js"></script>
+<script src="../admin/js/dataTables.bootstrap.min.js"></script>
 
-<script type="text/javascript" src="<?php echo web_root; ?>js/bootstrap-datepicker.js" charset="UTF-8"></script>
-<script type="text/javascript" src="<?php echo web_root; ?>js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-<script type="text/javascript" src="<?php echo web_root; ?>js/bootstrap-datetimepicker.uk.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../js/bootstrap-datepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../js/locales/bootstrap-datetimepicker.uk.js" charset="UTF-8"></script>
 
-<script type="text/javascript" src="<?php echo web_root; ?>admin/js/janobe.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../admin/js/janobe.js" charset="UTF-8"></script>
 
     <script type="text/javascript">
     (function() {
@@ -173,6 +173,6 @@
 
 }());
 </script>
- 
+
 </body>
 </html>

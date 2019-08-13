@@ -2,7 +2,7 @@
 <?php
 require_once ("../../include/initialize.php");
  	 if (!isset($_SESSION['ADMIN_USERID'])){
-      redirect(web_root."admin/index.php");
+      redirect("../admin/index.php");
      }
 
 
@@ -12,18 +12,18 @@ switch ($action) {
 	case 'add' :
 	doInsert();
 	break;
-	
+
 	case 'edit' :
 	doEdit();
 	break;
-	
+
 	case 'delete' :
 	doDelete();
 	break;
 
- 
+
 	}
-   
+
 	function doInsert(){
 		if(isset($_POST['save'])){
 
@@ -32,16 +32,16 @@ switch ($action) {
 			$messageStats = false;
 			message("All field is required!","error");
 			redirect('index.php?view=add');
-		}else{	
+		}else{
 			$autonumber = New Autonumber();
-			$autonumber->AUTOSTART	= $_POST['AUTOSTART']; 
+			$autonumber->AUTOSTART	= $_POST['AUTOSTART'];
 			$autonumber->AUTOEND	= $_POST['AUTOEND'];
 			$autonumber->AUTOKEY	= $_POST['AUTOKEY'];
 			$autonumber->create();
 
 			message("New Autonumber created successfully!", "success");
 			redirect("index.php");
-			
+
 		}
 		}
 
@@ -51,8 +51,8 @@ switch ($action) {
 		if(isset($_POST['save'])){
 
 			$autonumber = New Autonumber();
-			$autonumber->AUTOSTART	= $_POST['AUTOSTART']; 
-			$autonumber->AUTOEND	= $_POST['AUTOEND']; 
+			$autonumber->AUTOSTART	= $_POST['AUTOSTART'];
+			$autonumber->AUTOEND	= $_POST['AUTOEND'];
 			$autonumber->update($_POST['AUTOKEY']);
 
 			message(" Autonumber has been updated!", "success");
@@ -88,6 +88,6 @@ switch ($action) {
 		// 	redirect('index.php');
 		// }
 		// }
-		
+
 	}
 ?>

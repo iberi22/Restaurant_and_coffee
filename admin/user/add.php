@@ -1,6 +1,6 @@
-<?php 
+<?php
   if (!isset($_SESSION['ADMIN_USERID'])){
-      redirect(web_root."admin/index.php");
+      redirect("../admin/index.php");
   }
 
   $autonum = New Autonumber();
@@ -18,18 +18,18 @@
             <h1 class="page-header">Add New User</h1>
           </div>
           <!-- /.col-lg-12 -->
-       </div> 
-                   
+       </div>
+
                     <!-- <div class="form-group">
                     <div class="col-md-8">
                       <label class="col-md-4 control-label" for=
                       "user_id">User Id:</label>
 
-                      <div class="col-md-8"> --> 
+                      <div class="col-md-8"> -->
                          <input id="user_id" name="user_id"  type="hidden" value="<?php echo $res->AUTO; ?>">
                     <!--   </div>
                     </div>
-                  </div> -->           
+                  </div> -->
                    <div class="form-group">
                     <div class="col-md-8">
                       <label class="col-md-4 control-label" for="U_NAME">Name:</label>
@@ -74,28 +74,28 @@
                       <div class="col-md-8">
                        <select class="form-control input-lg" name="U_ROLE" id="U_ROLE">
                           <option value="Administrator"  >Administrator</option>
-                          <option value="Cashier"  >Cashier</option> 
-                          <option value="Waiter">Waiter</option> 
-                        </select> 
+                          <option value="Cashier"  >Cashier</option>
+                          <option value="Waiter">Waiter</option>
+                        </select>
                       </div>
                     </div>
                   </div>
 
 
-            
+
              <div class="form-group">
                     <div class="col-md-8">
                       <label class="col-md-4 control-label" for=
                       "idno"></label>
 
                       <div class="col-md-8">
-                       <button style="width: 100%;" class="btn btn-primary btn-lg" name="save" type="submit" ><span class="fa fa-save fw-fa"></span>  Save</button> 
+                       <button style="width: 100%;" class="btn btn-primary btn-lg" name="save" type="submit" ><span class="fa fa-save fw-fa"></span>  Save</button>
                           <!-- <a href="index.php" class="btn btn-info"><span class="fa fa-arrow-circle-left fw-fa"></span></span>&nbsp;<strong>List of Users</strong></a> -->
                        </div>
                     </div>
                   </div>
 
-               
+
         <div class="form-group">
                 <div class="rows">
                   <div class="col-md-6">
@@ -103,17 +103,16 @@
                     "otherperson"></label>
 
                     <div class="col-md-6">
-                   
+
                     </div>
                   </div>
 
                   <div class="col-md-6" align="right">
-                   
+
 
                    </div>
-                  
+
               </div>
               </div>
-          
+
         </form>
-       
