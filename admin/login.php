@@ -5,10 +5,10 @@ require_once("../include/initialize.php");
   <?php
  // login confirmation
   if(isset($_SESSION['ADMIN_USERID'])){
-    redirect(web_root."admin/index.php");
+    redirect("admin/index.php");
   }
   ?>
-  
+
 
 
  <!DOCTYPE html>
@@ -23,12 +23,12 @@ require_once("../include/initialize.php");
                 echo $viewTitle->Title;
             ?>
         </title>
-  
-    <!--<link rel="icon" href="<?php echo web_root; ?>favicon-1.ico" type="image/x-icon">-->
-  
+
+    <!--<link rel="icon" href="favicon-1.ico" type="image/x-icon">-->
+
       <link rel="stylesheet" href="css/style.css">
 
-  
+
 </head>
 
 <body>
@@ -46,7 +46,7 @@ require_once("../include/initialize.php");
       </div>
       <div>
         <input type="submit" name="btnLogin" value="Log in" />
-      
+
       </div>
     </form><!-- form -->
     <div class="button">
@@ -60,33 +60,33 @@ require_once("../include/initialize.php");
   </section><!-- content -->
 </div><!-- container -->
 </body>
-  
+
     <script src="js/index.js"></script>
 
 </body>
 </html>
 
- 
 
 
- <?php 
+
+ <?php
 
 if(isset($_POST['btnLogin'])){
   $email = trim($_POST['user_email']);
   $upass  = trim($_POST['user_pass']);
   $h_upass = sha1($upass);
-  
+
    if ($email == '' OR $upass == '') {
 
       message("Invalid Username or Password!", "error");
       redirect("login.php");
-         
-    } else {  
+
+    } else {
   //it creates a new objects of member
     $user = new User();
     //make use of the static function, and we passed to parameters
     $res = $user::userAuthentication($email, $h_upass);
-    if ($res==true) { 
+    if ($res==true) {
        message("You logon as ".$_SESSION['ROLE'].".","success");
       if ($_SESSION['ROLE']=='Administrator' || $_SESSION['ROLE']=='Cashier'){
 
@@ -101,15 +101,15 @@ if(isset($_POST['btnLogin'])){
         unset( $_SESSION['PASS'] );
         unset( $_SESSION['ROLE'] );
 
-         redirect(web_root."admin/index.php");
-      } 
+         redirect("admin/index.php");
+      }
     }else{
       message("Account does not exist! Please contact Administrator.", "error");
-       redirect(web_root."admin/login.php"); 
+       redirect("admin/login.php");
     }
  }
- } 
- ?> 
- 
+ }
+ ?>
+
 
 
